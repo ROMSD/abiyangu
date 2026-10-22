@@ -1,0 +1,397 @@
+/* ==========================================================
+   MEET THE VOICES
+   ========================================================== */
+.voices-section {
+    width: 100vw;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    padding: 100px max(5vw, 56px) 90px;
+    overflow: hidden;
+}
+.voices-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.voices-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 58px);
+    letter-spacing: -.05em;
+    line-height: 1.05;
+    margin: 0 0 14px;
+    font-weight: 700;
+}
+.voices-heading h2 > span:not(.voices-mic) {
+    color: var(--lime);
+}
+.voices-mic {
+    display: inline-block;
+    transform-origin: 50% 90%;
+    animation: voiceMicWiggle 2.8s ease-in-out infinite;
+}
+.voices-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+/* ---------- Carousel ---------- */
+.voices-carousel {
+    position: relative;
+    --gap: 24px;
+    --per-view: 4;
+}
+.voices-track {
+    display: flex;
+    gap: var(--gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 6px;
+    padding: 34px 6px 40px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.voices-track::-webkit-scrollbar {
+    display: none;
+}
+.voices-arrow {
+    position: absolute;
+    top: 42%;
+    z-index: 5;
+    width: 56px;
+    height: 56px;
+    border: 0;
+    border-radius: 50%;
+    background: #D74024;
+    color: white;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+    transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), background .2s, opacity .2s;
+}
+.voices-arrow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid #D74024;
+    animation: voiceRing 2.2s ease-out infinite;
+}
+.voices-arrow:hover {
+    transform: scale(1.14);
+    background: var(--lime);
+}
+.voices-arrow:active {
+    transform: scale(.92);
+}
+.voices-arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+.voices-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.voices-prev {
+    left: -28px;
+}
+.voices-next {
+    right: -28px;
+}
+
+/* ---------- Cards ---------- */
+.voice-card {
+    --tilt: -1.4deg;
+    flex: 0 0 calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
+    scroll-snap-align: start;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #0e0e52;
+    border: 1px solid rgba(255, 255, 255, .22);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .3);
+    transform: rotate(var(--tilt));
+    transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), box-shadow .35s, border-color .3s, opacity .6s;
+}
+.voice-card:nth-child(even) {
+    --tilt: 1.4deg;
+}
+.voice-card:hover,
+.voice-card:focus-within {
+    transform: translateY(-14px) rotate(0deg) scale(1.03);
+    box-shadow: 0 26px 44px rgba(0, 0, 0, .45), 0 0 0 3px var(--lime);
+    border-color: var(--lime);
+}
+
+/* Scroll-in reveal (only active once voices.js adds .reveal-ready) */
+.reveal-ready .voice-card:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(55px) scale(.9) rotate(var(--tilt));
+}
+
+/* ---------- Photo ---------- */
+.voice-photo {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(150deg, #D74024, #98252B);
+}
+.voice-card:nth-child(4n+2) .voice-photo {
+    background: linear-gradient(150deg, #E7A614, #D74024);
+}
+.voice-card:nth-child(4n+3) .voice-photo {
+    background: linear-gradient(150deg, #2D7078, #7099A4);
+}
+.voice-card:nth-child(4n) .voice-photo {
+    background: linear-gradient(150deg, #8F7E34, #98252B);
+}
+.voice-initial {
+    font-family: var(--font-display);
+    font-size: 110px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .85);
+}
+.voice-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.2, .8, .2, 1);
+}
+.voice-card:hover .voice-photo img {
+    transform: scale(1.1) rotate(1deg);
+}
+
+/* Floating music notes on hover */
+.voice-photo::before,
+.voice-photo::after {
+    position: absolute;
+    bottom: 14%;
+    font-size: 26px;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+.voice-photo::before {
+    content: "♪";
+    left: 14%;
+}
+.voice-photo::after {
+    content: "♫";
+    right: 14%;
+}
+.voice-card:hover .voice-photo::before {
+    animation: voiceNote 1.8s ease-out infinite;
+}
+.voice-card:hover .voice-photo::after {
+    animation: voiceNote 1.8s ease-out .6s infinite;
+}
+
+/* Little sound bars badge */
+.voice-bars {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 30px;
+    padding: 7px 9px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transform: translateY(-8px) scale(.8);
+    transition: opacity .3s, transform .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+.voice-card:hover .voice-bars {
+    opacity: 1;
+    transform: none;
+}
+.voice-bars i {
+    display: block;
+    width: 3px;
+    height: 16px;
+    border-radius: 3px;
+    background: var(--lime);
+    transform-origin: bottom;
+    animation: voiceBars .7s ease-in-out infinite alternate;
+}
+.voice-bars i:nth-child(2) { animation-delay: .15s; }
+.voice-bars i:nth-child(3) { animation-delay: .3s; }
+.voice-bars i:nth-child(4) { animation-delay: .08s; }
+
+/* ---------- Info ---------- */
+.voice-info {
+    padding: 20px 16px 22px;
+    text-align: center;
+}
+.voice-info h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: -.03em;
+    margin: 0 0 6px;
+    display: inline-block;
+}
+.voice-card:hover .voice-info h3 {
+    animation: voiceWiggle .7s ease-in-out;
+}
+.voice-show {
+    margin: 0 0 16px;
+    color: var(--lime);
+    font-weight: 700;
+    font-size: 15px;
+}
+.voice-bio-btn {
+    padding: 9px 26px;
+    border: 2px solid #D74024;
+    border-radius: 999px;
+    background: transparent;
+    color: #ff7a5f;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .2s;
+}
+.voice-bio-btn:hover {
+    background: #D74024;
+    color: white;
+    animation: voicePop .45s ease;
+}
+.voice-bio-btn:active {
+    transform: scale(.92);
+}
+
+/* ---------- Bio dialog ---------- */
+.voice-dialog {
+    width: min(420px, calc(100% - 28px));
+    padding: 0;
+    border: 2px solid #D74024;
+    border-radius: 26px;
+    background: #0e0e52;
+    color: white;
+    overflow: visible;
+}
+.voice-dialog[open] {
+    animation: voicePopIn .5s cubic-bezier(.34, 1.56, .64, 1);
+}
+.voice-dialog::backdrop {
+    background: rgba(5, 5, 30, .75);
+    backdrop-filter: blur(5px);
+}
+.voice-dialog-inner {
+    position: relative;
+    padding: 56px 30px 34px;
+    text-align: center;
+}
+.voice-dialog-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .12);
+    color: white;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform .25s, background .2s;
+}
+.voice-dialog-close:hover {
+    background: #D74024;
+    transform: rotate(90deg);
+}
+.voice-dialog-photo {
+    width: 130px;
+    height: 130px;
+    margin: -112px auto 16px;
+    border-radius: 50%;
+    border: 4px solid var(--lime);
+    background: linear-gradient(150deg, #D74024, #98252B) center / cover no-repeat;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 700;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .4);
+}
+.voice-dialog h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    margin: 0 0 4px;
+}
+.voice-dialog-show {
+    margin: 0 0 14px;
+    color: var(--lime);
+    font-weight: 700;
+}
+.voice-dialog-bio {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ---------- Animations ---------- */
+@keyframes voiceBars {
+    from { transform: scaleY(.25); }
+    to   { transform: scaleY(1); }
+}
+@keyframes voiceNote {
+    0%   { opacity: 0; transform: translateY(0) rotate(-10deg) scale(.7); }
+    20%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-120px) rotate(18deg) scale(1.2); }
+}
+@keyframes voiceWiggle {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-6deg) scale(1.08); }
+    40% { transform: rotate(5deg) scale(1.08); }
+    60% { transform: rotate(-3deg); }
+    80% { transform: rotate(2deg); }
+}
+@keyframes voicePop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+@keyframes voicePopIn {
+    0%   { opacity: 0; transform: scale(.6) translateY(40px); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes voiceRing {
+    0%   { transform: scale(1); opacity: .7; }
+    100% { transform: scale(1.55); opacity: 0; }
+}
+@keyframes voiceMicWiggle {
+    0%, 60%, 100% { transform: rotate(0); }
+    70% { transform: rotate(-14deg); }
+    80% { transform: rotate(12deg); }
+    90% { transform: rotate(-8deg); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+    .voices-carousel { --per-view: 3; }
+}
+@media (max-width: 800px) {
+    .voices-carousel { --per-view: 2; --gap: 18px; }
+}
+@media (max-width: 560px) {
+    .voices-section { padding: 75px 18px 70px; }
+    .voices-carousel { --per-view: 1.25; --gap: 14px; }
+    .voices-arrow { width: 44px; height: 44px; }
+    .voices-prev { left: -6px; }
+    .voices-next { right: -6px; }
+    .voice-initial { font-size: 90px; }
+}

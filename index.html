@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10101b">
+  <meta name="description" content="Listen to live campus radio, explore podcasts and discover programmes from Bindura University.">
+  <title>ABIYANGU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="voice.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="BUSE Radio home">
+      <span class="brand-mark">
+        <img src="logo.png" alt="BUSE Radio Logo" class="site-logo">
+      </span>
+      <span class="brand-copy"><strong style="margin-top: 20%; color: rgb(5, 5, 82); font-size: 30px;">Abiyangu  </strong><h4 style="margin-top: 0%;color: #98252B;"></h4></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#live">Live</a>
+      <a class="nav-link" href="#podcasts">Podcasts</a>
+      <a class="nav-link" href="#schedule">Schedule</a>
+      <a class="nav-link" href="#voices">Voices</a>
+    </nav>
+    <!--<a class="header-cta" href="#live"><span class="tiny-live-dot"></span> On Air <span aria-hidden="true">↗</span></a>-->
+  </header>
+
+  <main>
+    
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+
+      <div class="typing-container" style="font-size: 50px;">
+
+        <span id="typingText"></span>
+        <span class="cursor">|</span>
+
+      </div>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#live"><span class="button-play">▶</span> Listen Live</a>
+          <a class="button button-quiet" href="#podcasts">Explore podcasts <span></span></a>
+        </div>
+      </div>
+      
+    </section>
+    <section class="live-section section-wrap" id="live">
+      <div class="lv-head">
+        <h2>OUR <span>LIVESTREAM</span></h2>
+        <span class="lv-onair"><i></i> ON AIR</span>
+      </div>
+
+      <div class="lv-card">
+        <div class="lv-art">
+          <small>BUSE</small>
+          <strong>RADIO</strong>
+          <em>LIVE • 01</em>
+        </div>
+
+        <div class="lv-info">
+          <div class="lv-chip"><span class="live-dot"></span><span id="liveStatus">LIVE STREAM PLAYER</span></div>
+          <h3>BUSE Radio Live</h3>
+          <p id="currentProgramme">Campus, culture &amp; conversation</p>
+          <div class="lv-meta"><span id="playerMessage">Press play to listen</span><b>•</b><span id="connectionStatus">Ready to connect</span></div>
+        </div>
+
+        <div class="lv-controls">
+          <button class="lv-play" id="radioPlay" type="button" aria-label="Play live radio"><span id="radioPlayIcon">▶</span></button>
+          <div class="lv-wave"><div class="waveform" id="waveform" aria-hidden="true"></div></div>
+          <div class="volume-control">
+            <span aria-hidden="true">◖</span>
+            <input id="volumeSlider" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Volume">
+            <span aria-hidden="true">◗</span>
+          </div>
+        </div>
+
+        <audio id="radioAudio" preload="none" crossorigin="anonymous"></audio>
+      </div>
+
+      <div class="lv-foot">
+        <span style="font-style: italic;font-size: 15px;">Streaming live from Abiyangu</span>
+      </div>
+   </section>
+
+    <section class="podcasts-section section-wrap" id="podcasts">
+      
+        <div class="section-heading">
+          <div>
+            
+            <h2>TOP <span>CONVERS</span></h2>
+          </div>
+          
+        </div>
+
+        <div class="podcast-toolbar">
+          <div class="filter-tabs" role="group" aria-label="Filter podcasts">
+            <button class="filter-tab active" data-filter="all">All episodes</button>
+            <button class="filter-tab" data-filter="campus">Campus life</button>
+            <button class="filter-tab" data-filter="ideas">Ideas &amp; people</button>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="podcastSearch" type="search" placeholder="Find a podcast..." aria-label="Search podcasts">
+          </label>
+        </div>
+
+        <div class="podcast-grid" id="podcastGrid">
+
+          <article class="podcast-card" data-category="campus" data-title="The Campus Mic"
+                  data-youtube="https://youtu.be/_m8GhY7og_E">
+            <div class="podcast-cover cover-lime">
+              <span class="cover-kicker">BUSE ORIGINAL</span>
+              <span class="cover-graphic">THE<br><b>CAMPUS</b><br>MIC<span class="cover-period">.</span></span>
+              <span class="cover-bottom">STUDENT STORIES • EP 01</span>
+              <button class="cover-play" data-action="play" aria-label="Play The Campus Mic">▶</button>
+            </div>
+            <div class="podcast-card-info">
+              <div class="card-meta"><span>CAMPUS LIFE</span><span>EPISODE 01</span></div>
+              <h3>The Campus Mic</h3>
+              <p>Student voices, campus experiences and the stories between lectures.</p>
+              <button class="episode-button" data-action="play">Watch episode <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="podcast-card" data-category="ideas" data-title="Beyond the Lecture"
+                  data-youtube="https://youtu.be/4Vz6L8B73i4">
+            <div class="podcast-cover cover-purple">
+              <span class="cover-kicker">IDEAS IN MOTION</span>
+              <span class="cover-graphic cover-graphic-serif">BEYOND<br><i>the</i><br>LECTURE<span class="cover-period">.</span></span>
+              <span class="cover-bottom">KNOWLEDGE • CURIOSITY</span>
+              <button class="cover-play" data-action="play" aria-label="Play Beyond the Lecture">▶</button>
+            </div>
+            <div class="podcast-card-info">
+              <div class="card-meta"><span>IDEAS &amp; PEOPLE</span><span>EPISODE 02</span></div>
+              <h3>Beyond the Lecture</h3>
+              <p>Fresh perspectives from researchers, creatives and changemakers.</p>
+              <button class="episode-button" data-action="play">Watch episode <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="podcast-card" data-category="campus" data-title="The Culture Frequency"
+                  data-youtube="https://youtu.be/NvEEt7l3ToM">
+            <div class="podcast-cover cover-orange">
+              <span class="cover-kicker">SOUNDS OF HOME</span>
+              <span class="cover-graphic">CULTURE<br><b>FREQUENCY</b><span class="cover-period">.</span></span>
+              <div class="cover-sun"></div>
+              <span class="cover-bottom">MUSIC • CULTURE • COMMUNITY</span>
+              <button class="cover-play" data-action="play" aria-label="Play The Culture Frequency">▶</button>
+            </div>
+            <div class="podcast-card-info">
+              <div class="card-meta"><span>CAMPUS LIFE</span><span>EPISODE 03</span></div>
+              <h3>The Culture Frequency</h3>
+              <p>Music, identity and the creative energy of our community.</p>
+              <button class="episode-button" data-action="play">Watch episode <span>↗</span></button>
+            </div>
+          </article>
+        </div>
+
+        <div class="empty-state" id="emptyState" hidden>No episodes match your search. Try another title or category.</div>
+
+        <!-- Video popup -->
+        <div class="video-modal" id="videoModal" hidden>
+          <div class="video-modal-backdrop" data-close></div>
+          <div class="video-modal-box" role="dialog" aria-modal="true" aria-label="Video player">
+            <button class="video-modal-close" data-close aria-label="Close video">✕</button>
+            <h4 class="video-modal-title" id="videoModalTitle"></h4>
+            <div class="video-frame" id="videoFrame"></div>
+          </div>
+        </div>
+        
+   </section>
+
+    <section class="schedule-section" id="schedule"><div class="section-wrap schedule-inner"><div class="schedule-intro"><div class="eyebrow"><span class="eyebrow-line"></span> YOUR DAY, IN SOUND</div><h2>What's on<br><span>the airwaves.</span></h2><p>Make room for the conversations, music and campus updates that keep you in the know.</p><a href="#live" class="button button-primary">Tune in now <span>↗</span></a></div><div class="schedule-list">
+      <article class="schedule-item"><div class="schedule-time">08:00 <span>AM</span></div><div class="schedule-indicator"></div><div class="schedule-detail"><span class="schedule-tag">NEWS & UPDATES</span><h3>The Morning Brief</h3><p>Start your day with campus news and what's happening around Bindura.</p></div><span class="schedule-arrow">↗</span></article>
+      <article class="schedule-item schedule-current"><div class="schedule-time">11:00 <span>AM</span></div><div class="schedule-indicator"></div><div class="schedule-detail"><span class="schedule-tag">TALK & CULTURE</span><h3>Campus Connect</h3><p>Conversations, guest voices and the topics students are talking about.</p></div><span class="schedule-arrow">↗</span></article>
+      <article class="schedule-item"><div class="schedule-time">02:00 <span>PM</span></div><div class="schedule-indicator"></div><div class="schedule-detail"><span class="schedule-tag">MUSIC & DISCOVERY</span><h3>The Afternoon Mix</h3><p>A soundtrack for your afternoon, from familiar favourites to new finds.</p></div><span class="schedule-arrow">↗</span></article>
+      <article class="schedule-item"><div class="schedule-time">05:00 <span>PM</span></div><div class="schedule-indicator"></div><div class="schedule-detail"><span class="schedule-tag">PODCAST / REPLAY</span><h3>After Class</h3><p>Thoughtful conversations and stories to take with you after campus.</p></div><span class="schedule-arrow">↗</span></article>
+      
+    </div></div></section>
+
+    <!-- ===== MEET THE VOICES ===== -->
+    <section class="voices-section" id="voices">
+      <div class="voices-heading">
+        <h2>Meet the <span>Voices</span> <span class="voices-mic" aria-hidden="true">🎙️</span></h2>
+        <p>The personalities behind your favourite Abiyangu shows.</p>
+      </div>
+
+      <div class="voices-carousel">
+        <button class="voices-arrow voices-prev" type="button" aria-label="Previous voices">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+        </button>
+
+        <div class="voices-track" id="voicesTrack">
+
+          <article class="voice-card" data-name="Samuel" data-show="The Morning Brief"
+                  data-bio="Samuel kicks off your day with campus news, good energy and a smile you can hear. Replace this text with the real bio.">
+            <div class="voice-photo">
+              <span class="voice-initial">T</span>
+              <img src="m.jpeg" alt="Samuel">
+              <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="voice-info">
+              <h3>Samuel</h3>
+              <p class="voice-show">The Morning Brief</p>
+              <button class="voice-bio-btn" type="button">See Bio</button>
+            </div>
+          </article>
+
+          <article class="voice-card" data-name="Rudo" data-show="Campus Connect"
+                  data-bio="Rudo hosts the conversations students are talking about, with guests, laughs and honest opinions. Replace this text with the real bio.">
+            <div class="voice-photo">
+              <span class="voice-initial">R</span>
+              <img src="2.jpg" alt="Rudo">
+              <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="voice-info">
+              <h3>Rudo</h3>
+              <p class="voice-show">Campus Connect</p>
+              <button class="voice-bio-btn" type="button">See Bio</button>
+            </div>
+          </article>
+
+          <article class="voice-card" data-name="Farai" data-show="The Afternoon Mix"
+                  data-bio="Farai spins familiar favourites and fresh finds to carry you through the afternoon. Replace this text with the real bio.">
+            <div class="voice-photo">
+              <span class="voice-initial">F</span>
+              <img src="1.jpg" alt="Farai">
+              <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="voice-info">
+              <h3>Farai</h3>
+              <p class="voice-show">The Afternoon Mix</p>
+              <button class="voice-bio-btn" type="button">See Bio</button>
+            </div>
+          </article>
+
+          <article class="voice-card" data-name="Tinashe" data-show="After Class"
+                  data-bio="Tinashe winds down the day with thoughtful stories and chats to take home after campus. Replace this text with the real bio.">
+            <div class="voice-photo">
+              <span class="voice-initial">T</span>
+              <img src="2.jpg" alt="Tinashe">
+              <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="voice-info">
+              <h3>Tinashe</h3>
+              <p class="voice-show">After Class</p>
+              <button class="voice-bio-btn" type="button">See Bio</button>
+            </div>
+          </article>
+
+          <article class="voice-card" data-name="Nyasha" data-show="The Culture Frequency"
+                  data-bio="Nyasha celebrates music, identity and the creative energy of our community. Replace this text with the real bio.">
+            <div class="voice-photo">
+              <span class="voice-initial">N</span>
+              <img src="1.jpg" alt="Nyasha">
+              <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="voice-info">
+              <h3>Nyasha</h3>
+              <p class="voice-show">The Culture Frequency</p>
+              <button class="voice-bio-btn" type="button">See Bio</button>
+            </div>
+          </article>
+
+          <article class="voice-card" data-name="Chipo" data-show="Beyond the Lecture"
+                  data-bio="Chipo sits down with researchers, creatives and changemakers for ideas worth sharing. Replace this text with the real bio.">
+            <div class="voice-photo">
+              <span class="voice-initial">C</span>
+              <img src="polo.png" alt="Chipo">
+              <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="voice-info">
+              <h3>Chipo</h3>
+              <p class="voice-show">Beyond the Lecture</p>
+              <button class="voice-bio-btn" type="button">See Bio</button>
+            </div>
+          </article>
+
+        </div>
+
+        <button class="voices-arrow voices-next" type="button" aria-label="Next voices">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Bio popup -->
+    <dialog id="voiceDialog" class="voice-dialog">
+      <div class="voice-dialog-inner">
+        <button class="voice-dialog-close" type="button" data-close aria-label="Close">×</button>
+        <div class="voice-dialog-photo" id="voiceDialogPhoto"></div>
+        <h3 id="voiceDialogName"></h3>
+        <p class="voice-dialog-show" id="voiceDialogShow"></p>
+        <p class="voice-dialog-bio" id="voiceDialogBio"></p>
+      </div>
+    </dialog>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a class="brand footer-brand" href="#home">
+        <span class="brand-copy">
+          <strong style="font-size: larger;">Abiyangu</strong>
+          <small style="font-size: 10px;">CAMPUS • CULTURE • CONVERSATION</small>
+        </span>
+      </a>
+
+      <div class="footer-social">
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.5 1.6-1.5h1.7V3.4C16.5 3.3 15.5 3.2 14.4 3.2c-2.4 0-4.1 1.5-4.1 4.2v2.4H7.5V13h2.8v8h3.2z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span style="font-size: 20px;">© <span id="year"></span> BUSE </span>
+      <span style="font-size: 20PX;">BUILT BUSE COMMUNITY <b>✳</b></span>
+    </div>
+  </footer>
+
+  
+  <dialog id="streamDialog" class="stream-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="eyebrow"><span class="eyebrow-line"></span> CONNECT YOUR BROADCAST</div><h2>Bring the station <span>online.</span></h2><p>Enter an authorised, browser-compatible audio stream URL. This setting is stored only in this browser. For a permanent public stream, configure the URL in <code>script.js</code>.</p><label for="streamUrl">Live stream URL</label><input id="streamUrl" type="url" placeholder="https://example.com/live.mp3"><div class="dialog-actions"><button class="button button-quiet" id="clearStream" type="button">Clear URL</button><button class="button button-primary" id="saveStream" type="button">Save stream URL</button></div><p class="dialog-hint">A page cannot create a live broadcast on its own. The station must provide a working stream URL. Some sources may block browser playback or require HTTPS.</p></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="voice.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
